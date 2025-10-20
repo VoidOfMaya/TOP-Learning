@@ -12,24 +12,36 @@ const giphy = `https://api.giphy.com/v1/gifs/translate?api_key=${rizzLord}&s=`;
 
 
  const memeSearch = function(searchOption){
-    console.log('giphy api: ')
-    const result = giphy+searchOption;
-
-    return result
+   console.log('giphy api: ')
+   const result = giphy+searchOption;
+   return result
  }
  const  fetchMemes =function(link , element){
-   fetch(link)
+   fetch(link)  
       .then((response)=>{
          return(response.json());
       })
       .then((response)=>{
-         console.log(response.data.images.original.url);
-         element.src = response.data.images.original.url;
+         const imgUrl = response?.data?.images?.original?.url;
+         if (imgUrl){
+            success(imgUrl, element);
+         }else{
+            console.warn("no valid image in response: ", response);
+            faliur(element);
+         }
       })
-      .catch((err)=>{
-         console.error(err);
-         
-      })
+      .catch((error)=>{
+          console.error("Network or parsing error:", error);
+         faliur(element);
+      }) 
+
+ }
+ const success =function(link, element){
+   element.src = link;
+ }
+ const faliur = function(element){
+   element.removeAttribute("src");
+   element.alt = "Oops... Something went wrong!!!"
  }
 
  export{

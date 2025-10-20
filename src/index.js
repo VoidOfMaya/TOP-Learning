@@ -17,6 +17,27 @@ console.log('running program');
 
 
 const container = document.createElement('img');
-const result = memeSearch('cats');
-fetchMemes(result, container);
+
+const searchBar = document.createElement('input');
+const submitReq = document.createElement('div');
+
+searchBar.placeholder = "click to search!";
+searchBar.required;
+
+submitReq.innerHTML = "let there be gifs"
+
+submitReq.addEventListener('click',()=>{
+    
+    if( searchBar.value !== ""){
+        const result = memeSearch(String(searchBar.value));
+        fetchMemes(result, container);
+    }else{
+        console.log(`invalid search option!`);
+    }
+})
+//fetchMemes(result, container);
+
+document.body.appendChild(searchBar);
+document.body.appendChild(submitReq)
 document.body.appendChild(container);
+

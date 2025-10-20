@@ -16,7 +16,7 @@ const giphy = `https://api.giphy.com/v1/gifs/translate?api_key=${rizzLord}&s=`;
    const result = giphy+searchOption;
    return result
  }
- const  fetchMemes =function(link , element){
+ /*const  fetchMemes =function(link , element){
    fetch(link)  
       .then((response)=>{
          return(response.json());
@@ -42,7 +42,26 @@ const giphy = `https://api.giphy.com/v1/gifs/translate?api_key=${rizzLord}&s=`;
  const faliur = function(element){
    element.removeAttribute("src");
    element.alt = "Oops... Something went wrong!!!"
- }
+ }*/
+const fetchMemes = async function (link, element){
+   const response =await fetch(link)
+   try{      
+      const searchData = await response.json()
+      const imgUrl = searchData?.data?.images?.original?.url;
+      if (imgUrl){
+         success(imgUrl, element);
+      }else{
+         console.warn("no valid image in response: ", response);
+         faliur(element);
+      }         
+   }catch{
+        ((error)=>{
+          console.error("Network or parsing error:", error);
+         faliur(element);
+      }) }
+
+
+}
 
  export{
     memeSearch,

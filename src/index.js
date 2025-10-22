@@ -16,7 +16,7 @@ console.log('running program');
 
 
 
-const container = document.createElement('img');
+/*const container = document.createElement('img');
 
 const searchBar = document.createElement('input');
 const submitReq = document.createElement('div');
@@ -40,4 +40,10 @@ submitReq.addEventListener('click',()=>{
 document.body.appendChild(searchBar);
 document.body.appendChild(submitReq)
 document.body.appendChild(container);
+*/
+
+//computer science study: 22.10.2025
+import { run } from "./Modules/recursion";
+
+run();
 

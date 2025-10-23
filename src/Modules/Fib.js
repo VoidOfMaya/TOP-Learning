@@ -5,26 +5,28 @@ fib is
 */
 const fibIter =function (n){
     let arr = [];
-    for(let i = 0; i >= n; i++){
-        let res = 0;
-        if(res <= 2 ){
-            res = 1    
-            arr.concat(res);
-        }
-        arr.concat((res-1)+(res-2));
+    let a = [0, 1];
+    for(let i = 0; i < n; i++){
+        arr.push(a[0]);
+
+        let temp = a[0] + a[1];
+        a[0] = a[1];
+        a[1]= temp;
     }
     return arr
 }
-/*
-const fibRec = function (n){
 
-    if( n <= 2){    
-        return n = 1;
-       
-    }
+const logFib = function(n, arr = []){
+    if (n === 0) return arr;
+    logFib(n-1, arr)
+    arr.push(fib(n-1));
+    return arr;
+}
+const fib = function (n){
+    if(n === 0) return n = 0;
+    if( n < 2)  return n = 1;
     return fib(n-1) + fib(n-2);
 }
-    */
 
-console.log(`itretive : ${fibIter(18)}`);
-//console.log(`Recursive: ${fibRec(18)}`);
+console.log(`itretive : [${fibIter(8)}]`);
+console.log(`Recursive: [${logFib(8)}]`);

@@ -142,7 +142,7 @@ const run =function(){
     //q8
         //console.log(`square sum : ${sumSquare([10,[[10],10],[10]])}`);
     //q9
-        console.log(`array: ${replicate(-2 , 6)}`);
+        //console.log(`array: ${replicate(-2 , 6)}`);
 }
 
 

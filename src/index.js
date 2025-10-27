@@ -54,6 +54,8 @@ list.append('fish');
 list.append('lizards');
 list.append('birds');
 
+list.prepend('chickens');
+
 list.toString();
 
 

@@ -88,6 +88,45 @@ class LinkedList{
         }
         console.log(str);
     }
+//extra credit:
+    removetAt(index){
+        if((typeof index !== "number" || index < 0 || index >= this.#length) ) return null;
+        if(index === 0){
+            if(this.#head === null) return null;
+            this.#head = this.getNode(index + 1);
+            this.#length--;
+        }
+        if(index === this.#length){
+            const prev = this.getNode(index - 2)
+            prev.next = null;
+            this.#length--;
+        }
+        if(index > 0 && index < this.#length ){        
+            const back = this.getNode(index -1);
+            const front = this.getNode(index);
+            back.next = front.next;
+            this.#length--;
+        }
+
+    }
+    insertAt(value ,index){
+        if((typeof index !== "number" || index < 0 || index > this.#length) ) return null;
+
+        if(index === 0){
+            this.prepend(value);
+        }
+        if(index === this.#length){
+            this.append(value);
+        }
+        if(index > 0 && index < this.#length ){        
+            const node = new Node(value);
+            const back = this.getNode(index -1);
+            const front = this.getNode(index);
+            back.next = node;
+            node.next = front;
+            this.#length++;
+        }   
+    }
 }
 class Node{
    

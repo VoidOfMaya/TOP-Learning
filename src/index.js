@@ -66,10 +66,22 @@ console.log(`size ; ${list.getSize()}`);
 //6
 console.log(`head ; ${JSON.stringify(list.getHead())}`);
 //7
-console.log(`tail ; ${list.getTail()}`);
+console.log(`tail ; ${JSON.stringify(list.getTail())}`);
 //8
-console.log(`get node: ${list.getNode(1)}`)
+console.log(`get node: ${JSON.stringify(list.getNode(1))}`)
 //8
 console.log(list.find('batman')); 
 //9
 console.log(list.contains('lizards'));
+list.insertAt('dragons', 3);
+list.insertAt('mermaids', 6);
+list.insertAt('vampiers', 0);
+list.toString();
+
+console.log(`remove 1`)
+list.removetAt(0);
+console.log(`remove 2`)
+list.removetAt(3);
+console.log(`remove 3`)
+list.removetAt(6);
+list.toString();

@@ -1,5 +1,6 @@
 import { asyncPromis } from "./Modules/async";
 import { memeSearch, fetchMemes } from "./Modules/APis";
+
 //const timedCallBack = function(){
 //    return "this timed function has concluded after 5 seconds";
 //}
@@ -44,6 +45,15 @@ document.body.appendChild(container);
 
 //computer science study: 22.10.2025
 import { run } from "./Modules/recursion";
+import { LinkedList } from "./Modules/linkedlists";
 
-run();
+const list = new LinkedList ();
+list.append('cats');
+list.append('dogs');
+list.append('fish');
+list.append('lizards');
+list.append('birds');
+
+list.toString();
+
 

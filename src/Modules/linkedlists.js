@@ -89,7 +89,7 @@ class LinkedList{
         console.log(str);
     }
 //extra credit:
-    removetAt(index){
+    removeAt(index){
         if((typeof index !== "number" || index < 0 || index >= this.#length) ) return null;
         if(index === 0){
             if(this.#head === null) return null;

@@ -86,7 +86,7 @@ list.removetAt(3);
 console.log(`remove 3`)
 list.removetAt(6);
 list.toString();
-*/
+
 const test = new Hashmap();
  test.set('apple', 'red')
  test.set('banana', 'yellow')
@@ -113,3 +113,8 @@ test.keys().forEach(element => {
     console.log(`{${element}}`);
 });
 console.log(test.length());
+*/
+import { Tree } from "./Modules/BSTs";
+
+const test = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
+test.prettyPrint(test.getRoot());

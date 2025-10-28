@@ -96,10 +96,20 @@ const test = new Hashmap();
  test.set('frog', 'green')
  test.set('grape', 'purple')
  test.set('hat', 'black')
+ console.log(test.length());
  test.set('ice cream', 'white')
  test.set('jacket', 'blue')
  test.set('kite', 'pink')
  test.set('lion', 'golden')
-
+ 
  //console.log(`entiries: ${test.enteries()}`);
+test.keys().forEach(element => {
+    console.log(`{${element}}`);
+});
+console.log(test.length());
 
+test.remove('banana')
+test.keys().forEach(element => {
+    console.log(`{${element}}`);
+});
+console.log(test.length());

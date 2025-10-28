@@ -1,6 +1,6 @@
-//===>hash map ground rulles<===
+//===>single demnsion hash map ground rulles<===
 //limit size of bucket array
-import {LinkedList} from "./linkedlists.js"
+
 class Hashmap{
     #load= 0.75;
     #capacity = 16
@@ -14,29 +14,16 @@ class Hashmap{
 
         const primeN = 31;
         for(let i = 0;i < key.length; i++){
-            hashCode = primeN * hashCode + key.charCodeAt(i) % this.#bucket.length ;
+            hashCode = (primeN * hashCode + key.charCodeAt(i)) % this.#bucket.length ;
         }
-        return hashCode;
+
+        return hashCode % this.#bucket.length ;
     }
 
     set(key, value){
         const hashed = this.#hash(key);
-        
-        if(this.#bucket[hashed] === undefined){
-            const node = new LinkedList();
-            this.#bucket[hashed] = node;
-            node.append({key, value});
-        
-        }else{
-            const node = this.#bucket[hashed];
-            console.log(`contains: ${this.#bucket}`);
-            if(node.contains(key)){
-                const existingNode = node.getNode(node.find(key));
-                existingNode.value = value;
-            }else{
-                node.append({key, value});
-            }
-        }
+        this.#bucket[hashed] = {key, value};
+
         const bucketCount = this.#countBuckets();
         const factor = this.#load * this.#capacity;
         if(bucketCount >= factor){
@@ -47,34 +34,30 @@ class Hashmap{
     get(key){
         const hashed = this.#hash(key);
         const node =this.#bucket[hashed]
-        if(node !== null && node.contains(key)){
-            const existingNode = node.getNode(node.find(key));
-            return existingNode.value;
+        if(node && node.key === key){
+            return node.value;
         }
         return null;
     }
     hasKey(key){
         const hashed = this.#hash(key);
         const node = this.#bucket[hashed];
-        if(node !== null && node.contains(key)){
+        if(node !== null && node.key ===key){
             return true;
         }else return false;
     }
     remove(key){
         const hashed = this.#hash(key);
         const node = this.#bucket[hashed];
-        if(node !== null && node.contains(key)){
-            node.removeAt(node.find(key));
-        }
-        if(node.getHead() === null){
-            this.#bucket[hashed] = null
+        if(node && node.key === key){
+            this.#bucket[hashed] = null;
         }
     }
     length(){
         let counter = 0;
         this.#bucket.forEach(node => {
             if(node !== null){
-               counter += node.getSize();
+               counter++;
             }
         });
         return counter;
@@ -86,42 +69,31 @@ class Hashmap{
     }
     keys(){
         let keyArr = [];
-        this.#bucket.forEach((node, i) =>{
+        this.#bucket.forEach((node) =>{
             if(node !== null){
-                let currentNode = node.getHead();
-                while(currentNode !== null){
-                    keyArr.push(currentNode.value.key);
-                    currentNode = currentNode.next;
-                }
+                keyArr.push(node.key);
             }else return;
         })
         return keyArr;
     }
     values(){
-        let keyArr = [];
+        let valueArr = [];
         this.#bucket.forEach((node) =>{
             if(node !== null){
-                let currentNode = node.getHead();
-                while(currentNode !== null){
-                    keyArr.push(currentNode.value.value);
-                    currentNode = currentNode.next;
-                }
+                valueArr.push(node.value);
             }else return;
         })
-        return keyArr;
+        return valueArr;
     }
     enteries(){
-        let keyArr = [];
-        this.#bucket.forEach((node, i) =>{
+        let Arr = [];
+        this.#bucket.forEach((node) =>{
             if(node !== null){
-                let currentNode = node.getHead()
-                while(currentNode !== null){
-                    keyArr.push(currentNode.value.key, currentNode.value.value);
-                    currentNode = currentNode.next;
-                }
+
+                Arr.push(node.key, node.value);
             }else return;
         })
-        return keyArr;
+        return Arr;
     }
 
     #resize(){
@@ -141,13 +113,8 @@ class Hashmap{
     } 
     #rehash(arr){
        arr.forEach(node =>{
-        let currentNode = node.getHead();
         
-        while(currentNode !==null){
-            this.set(currentNode.key, currentNode.value);
-            currentNode = currentNode.next;
-
-        }
+        this.set(node.key, node.value);
        })
     }      
     
@@ -156,7 +123,7 @@ class Hashmap{
         this.#bucket.forEach(element => {
             if(element !== null){
                 number++;
-            }else return;
+            }
         });
         return number;
     }

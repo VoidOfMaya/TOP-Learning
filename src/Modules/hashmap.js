@@ -1,7 +1,7 @@
 //===>hash map ground rulles<===
 //limit size of bucket array
 import {LinkedList} from "./linkedlists.js"
-class hashmap{
+class Hashmap{
     #load= 0.75;
     #capacity = 16
     #bucket = [];
@@ -22,13 +22,14 @@ class hashmap{
     set(key, value){
         const hashed = this.#hash(key);
         
-        if(this.#bucket[hashed] === null){
-            const node = new LinkedLis();
+        if(this.#bucket[hashed] === undefined){
+            const node = new LinkedList();
             this.#bucket[hashed] = node;
             node.append({key, value});
         
         }else{
             const node = this.#bucket[hashed];
+            console.log(`contains: ${this.#bucket}`);
             if(node.contains(key)){
                 const existingNode = node.getNode(node.find(key));
                 existingNode.value = value;
@@ -161,4 +162,8 @@ class hashmap{
     }
     
 
+}
+
+export { 
+    Hashmap,
 }

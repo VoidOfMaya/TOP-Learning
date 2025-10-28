@@ -13,6 +13,7 @@ class LinkedList{
             }
             current.next = node
         }
+        node.next = null;
         this.#length++;
     }
     prepend(value){

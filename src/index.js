@@ -46,7 +46,8 @@ document.body.appendChild(container);
 //computer science study: 22.10.2025
 import { run } from "./Modules/recursion";
 import { LinkedList } from "./Modules/linkedlists";
-
+import { Hashmap } from "./Modules/hashmap";
+/*
 const list = new LinkedList ();
 //1
 list.append('cats');
@@ -85,3 +86,20 @@ list.removetAt(3);
 console.log(`remove 3`)
 list.removetAt(6);
 list.toString();
+*/
+const test = new Hashmap();
+ test.set('apple', 'red')
+ test.set('banana', 'yellow')
+ test.set('carrot', 'orange')
+ test.set('dog', 'brown')
+ test.set('elephant', 'gray')
+ test.set('frog', 'green')
+ test.set('grape', 'purple')
+ test.set('hat', 'black')
+ test.set('ice cream', 'white')
+ test.set('jacket', 'blue')
+ test.set('kite', 'pink')
+ test.set('lion', 'golden')
+
+ //console.log(`entiries: ${test.enteries()}`);
+

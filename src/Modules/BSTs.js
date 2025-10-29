@@ -31,8 +31,9 @@ class Tree{
     #root = null;
     #array = null;
     constructor(arr){
-        this.#array = arr.filter((value, index, self)=>{
-            return self.indexOf(value) === index
+        this.#array = arr.sort((a, b)=> a - b)
+                         .filter((value, index, self)=>{
+                            return self.indexOf(value) === index
         })//this.#sortArray(arr);
         console.log(arr);
         console.log(this.#array);

@@ -72,7 +72,22 @@ class Tree{
     getRoot() {
         return this.#root;
     }
-    find(value){};
+    
+    find(value){
+        let currentNode = this.#root;
+        while(currentNode !== null){
+            if(value === currentNode.data) return currentNode;
+
+            if(value < currentNode.data){
+                if(currentNode.left === null) return null;
+                else currentNode = currentNode.left;
+
+            }else if(value > currentNode.data){
+                if(currentNode.right === null) return null;
+                else currentNode = currentNode.right;
+            }           
+        }
+    };
     //base case: if value is smaller then root try insert in next left node if left node   ===null
     //           if value is greater then root try insert in next right node if right node ===null
     //           if value smaller then root check if left is null, if left is null new node insert
@@ -102,7 +117,12 @@ class Tree{
             }
         }  
     };
-    deleteItem(value){};
+    // case 1: node is leaf node
+    // case 2: node has 1 child
+    // case 3: node has 2 children
+    deleteItem(value){
+
+    };
 }
 export{
     Tree,

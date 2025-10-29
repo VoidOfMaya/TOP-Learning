@@ -121,7 +121,47 @@ class Tree{
     // case 2: node has 1 child
     // case 3: node has 2 children
     deleteItem(value){
+        let currentNode = this.#root;
+        let parentNode = null;
 
+        while (currentNode !== null && currentNode.data !== value) {
+            parentNode = currentNode;  // Keep track of the parent
+            if (value < currentNode.data) {
+                currentNode = currentNode.left;
+            } else if (value > currentNode.data) {
+                currentNode = currentNode.right;
+            }
+        }
+        if(currentNode === null) return null;
+        //case 1 leaf nodes
+        if(currentNode.left ===null && currentNode.right === null){
+            if(parentNode ===null) this.#root = null;
+            else if(parentNode.left === currentNode) parentNode.left = null;
+            else parentNode.right === null;    
+        }
+        //case 2 node has 1 child
+        else if(currentNode.left ===null || currentNode.right === null){
+            const childNode = currentNode.left ? currentNode.left : currentNode.right;
+
+            if(parentNode === null) this.#root = childNode;
+            else if(parentNode.left === currentNode) parentNode.left = childNode;
+            else parentNode.right = childNode
+        }
+        //case 3 node has 2 children
+        else{
+            let successorParent = currentNode;
+            let successor = currentNode.right;
+            while(successor.left !== null){
+                successorParent = successor;
+                successor = successor.left;
+            }
+            
+            currentNode.data = successor.data;
+
+            if(successorParent !== currentNode){
+                successorParent.left = successor.right;
+            }else successorParent.right =successor.right;
+        }
     };
 }
 export{

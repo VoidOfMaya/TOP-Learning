@@ -123,3 +123,5 @@ test.prettyPrint(test.getRoot());
 test.insert(2);
 test.prettyPrint(test.getRoot());
 console.log(test.find(23));
+
+//test.prettyPrint(test.getRoot());

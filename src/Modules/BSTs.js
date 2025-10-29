@@ -88,8 +88,7 @@ class Tree{
             }           
         }
     };
-    //base case: if value is smaller then root try insert in next left node if left node   ===null
-    //           if value is greater then root try insert in next right node if right node ===null
+    //base case: 
     //           if value smaller then root check if left is null, if left is null new node insert
     //           if value greater then root check if right is null, if right is null new node insert
     insert(value){
@@ -137,7 +136,7 @@ class Tree{
         if(currentNode.left ===null && currentNode.right === null){
             if(parentNode ===null) this.#root = null;
             else if(parentNode.left === currentNode) parentNode.left = null;
-            else parentNode.right === null;    
+            else parentNode.right = null;    
         }
         //case 2 node has 1 child
         else if(currentNode.left ===null || currentNode.right === null){
@@ -163,6 +162,71 @@ class Tree{
             }else successorParent.right =successor.right;
         }
     };
+    levelOrderForEach(fn){
+        //breadth first algo:
+        //get node
+        //push node to queue
+        //pull node from queue and push its children to queue
+        //push current node to queue
+        if(typeof fn !== "function") throw new Error('a call back funciton is required');
+        if(this.#root === null) return;
+
+        const queue = [];
+        queue.push(this.#root);
+        while(queue.length > 0){
+            const currentNode =queue.shift();
+            fn(currentNode);
+
+            if(currentNode.left !== null) queue.push(currentNode.left);
+            if(currentNode.right !== null) queue.push(currentNode.right);
+        }
+
+    };
+    //<left><root><right>
+    inOrderForEach(fn){
+        if(typeof fn !== "function") throw new Error('a call back funciton is required');
+        if(this.#root === null) return;
+        
+
+        this.#inOrder(this.#root, fn);
+
+    };
+    #inOrder(node, fn){
+        if(node ===null)return;
+        this.#inOrder(node.left, fn);
+        fn(node);
+        this.#inOrder(node.right, fn);
+    }
+    //<root><left><right>
+    preOrderForEach(fn){
+        if(typeof fn !== "function") throw new Error('a call back funciton is required');
+        if(this.#root === null) return;
+        
+
+        this.#preOrder(this.#root, fn);
+
+    };
+    #preOrder(node, fn){
+        if(node ===null)return;
+        fn(node);
+        this.#preOrder(node.left, fn);
+        this.#preOrder(node.right, fn);
+    }    
+    //<left><right><root>
+    postOrderForEach(fn){
+        if(typeof fn !== "function") throw new Error('a call back funciton is required');
+        if(this.#root === null) return;
+        
+
+        this.#postOrder(this.#root, fn);
+
+    };
+    #postOrder(node, fn){
+        if(node ===null)return;
+        this.#postOrder(node.left, fn);
+        this.#postOrder(node.right, fn);
+        fn(node);
+    }
 }
 export{
     Tree,

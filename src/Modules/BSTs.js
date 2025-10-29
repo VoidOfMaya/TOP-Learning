@@ -31,11 +31,12 @@ class Tree{
     #root = null;
     #array = null;
     constructor(arr){
+        console.log(arr);
         this.#array = arr.sort((a, b)=> a - b)
                          .filter((value, index, self)=>{
                             return self.indexOf(value) === index
         })//this.#sortArray(arr);
-        console.log(arr);
+
         console.log(this.#array);
         this.#root= this.#buildTree(this.#array);
     }
@@ -72,7 +73,35 @@ class Tree{
         return this.#root;
     }
     find(value){};
-    insert(value){};
+    //base case: if value is smaller then root try insert in next left node if left node   ===null
+    //           if value is greater then root try insert in next right node if right node ===null
+    //           if value smaller then root check if left is null, if left is null new node insert
+    //           if value greater then root check if right is null, if right is null new node insert
+    insert(value){
+        if (this.#root === null) {
+            this.#root = new Node(value);
+            return;
+        }
+        let currentNode = this.#root;
+        while (currentNode !== null){
+                if(value === currentNode.data) return console.warn(`this value already exists!`);
+            if(value < currentNode.data){
+
+                if(currentNode.left === null){
+                    currentNode.left = new Node(value);
+                    return;
+                }else currentNode = currentNode.left;
+
+            }else if(value > currentNode.data){
+
+                if(currentNode.right === null){
+                    currentNode.right= new Node(value);
+                    return;
+                }else currentNode = currentNode.right;
+            
+            }
+        }  
+    };
     deleteItem(value){};
 }
 export{

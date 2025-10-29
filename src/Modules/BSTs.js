@@ -1,7 +1,7 @@
 //===>balanced binary tree<===
 /*
 what is a balnced binary tree?
-    -height of left subtree adn right subtree of root differ by at most 1.
+    -height of left subtree and right subtree of root differ by at most 1.
     -left subtree is balanced.
     -rightsubtree is balanced.
     -root node is the middle element of a sorted array
@@ -19,30 +19,11 @@ main algorthim:-
 -
 */
 class Node{
-    #root=null;
-    #lNode = null;
-    #rNode = null;
+    data=null;
+    left = null;
+    right = null;
     constructor(value){
-        this.setRoot(value);
-    }
-
-    setRoot(value){
-        this.#root = value;
-    }
-    setLNode(value){
-        this.#lNode = value;
-    }
-    setRNode(value){
-        this.#rNode = value;
-    }
-    getRoot() {
-        return this.#root;
-    }
-    getLNode() {
-        return this.#lNode;
-    }
-    getRNode() {
-        return this.#rNode;
+        this.data = value;
     }
 }
 
@@ -50,48 +31,48 @@ class Tree{
     #root = null;
     #array = null;
     constructor(arr){
-        this.#array = this.#sortArray(arr);
+        this.#array = arr.filter((value, index, self)=>{
+            return self.indexOf(value) === index
+        })//this.#sortArray(arr);
+        console.log(arr);
+        console.log(this.#array);
         this.#root= this.#buildTree(this.#array);
     }
-    #sortArray (array){
-        const uniqueArray = array.filter((value, index, self) => {
-            return self.indexOf(value) === index;
-        });
-        return uniqueArray.sort((a,b)=>a-b);
-    };
+
     #buildTree(arr){
-        if(arr.length === 0){
-            return null;
-        }
+        if (arr.length === 0 ) return null;
+
+        const mid = Math.floor(arr.length / 2) ;        
+        const node = new Node(arr[mid]);
+        if(this.#root === null) this.#root = node;
+
         
-        const midindex = Math.floor(arr.length/2);
-        const node = new Node(arr[midindex]);
+        node.left= this.#buildTree(arr.slice(0, mid));
+        node.right = this.#buildTree(arr.slice(mid+1));
 
-        node.setLNode(this.#buildTree(arr.slice(0, midindex)));
-        node.setRNode(this.#buildTree(arr.slice(midindex +1)));
+        return node
 
-        return node;
-
+        //console.log(`midpoint: ${mid}\nleft arr: ${A}\nright arr: ${arr}`); 
     }
     prettyPrint(node, prefix = '', isLeft = true){
         if (node === null) {
             return;
         }
-            const leftNode = node.getLNode();
-            const rightNode = node.getRNode();
-    
-        if (rightNode  !== null) {
-            this.prettyPrint(rightNode , `${prefix}${isLeft ? '│   ' : '    '}`, false);
+        if (node.right  !== null) {
+            this.prettyPrint(node.right , `${prefix}${isLeft ? '│   ' : '    '}`, false);
         }
-        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.getRoot()}`);
-        if (leftNode !== null) {
-            this.prettyPrint(leftNode, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.data}`);
+        if (node.left !== null) {
+            this.prettyPrint(node.left, `${prefix}${isLeft ? '    ' : '│   '}`, true);
         }
     };
 
     getRoot() {
         return this.#root;
     }
+    find(value){};
+    insert(value){};
+    deleteItem(value){};
 }
 export{
     Tree,

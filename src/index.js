@@ -125,3 +125,5 @@ test.prettyPrint(test.getRoot());
 test.deleteItem(8);
 test.prettyPrint(test.getRoot());
 test.postOrderForEach(node => console.log(node.data))
+console.log(` height: ${test.height(9)}`);
+console.log(` depth: ${test.depth(2)}`);

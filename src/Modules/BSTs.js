@@ -227,6 +227,36 @@ class Tree{
         this.#postOrder(node.right, fn);
         fn(node);
     }
+
+    height(value){
+        const currentNode = this.find(value);
+        if(currentNode === null) return null;
+        //is leaf node
+        const getHeight = (node)=>{
+            if(node === null) return -1;
+
+            const leftheight = getHeight(node.left);
+            const rightheight = getHeight(node.right);
+            return Math.max(leftheight, rightheight)+ 1;
+        }
+        return getHeight(currentNode);
+    }
+    depth(value){
+        const currentNode = this.find(value);
+        if(currentNode === null) return null;
+        const getDepth = (node,currentDepth = 0)=>{
+            if(node === null) return -1;
+            if(node.data === value) return currentDepth;
+
+            if(value<node.data){
+                return getDepth(node.left, currentDepth+ 1);
+            }else{
+                return getDepth(node.right, currentDepth + 1);
+            }
+        }
+        return getDepth(this.#root);
+    }
+    isBalanced(){}
 }
 export{
     Tree,

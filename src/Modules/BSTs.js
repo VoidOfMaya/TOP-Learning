@@ -272,6 +272,13 @@ class Tree{
         return balance(this.#root) !== -1;
         
     }
+    reBalance(){
+        let arr = []
+        if(!this.isBalanced()){
+            this.inOrderForEach(node =>(arr.push(node.data)));
+            this.#root = this.#buildTree(arr);
+        }  
+    }
 }
 export{
     Tree,

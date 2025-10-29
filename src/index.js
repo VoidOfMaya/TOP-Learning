@@ -122,6 +122,7 @@ console.log(test.getRoot())
 test.insert(2);
 test.insert(44);
 test.insert(45);
+test.insert(46);
 test.prettyPrint(test.getRoot());
 
 test.deleteItem(8);
@@ -130,3 +131,5 @@ test.inOrderForEach(node => console.log(node.data))
 console.log(` height: ${test.height(4)}`);
 console.log(` depth: ${test.depth(4)}`);
 console.log(` balance: ${test.isBalanced()}`);
+test.reBalance()
+test.prettyPrint(test.getRoot());

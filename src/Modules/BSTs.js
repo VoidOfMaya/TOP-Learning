@@ -186,48 +186,44 @@ class Tree{
     inOrderForEach(fn){
         if(typeof fn !== "function") throw new Error('a call back funciton is required');
         if(this.#root === null) return;
-        
+        const inO = (node, fn)=>{
+            if(node ===null)return;
+            inO(node.left, fn);
+            fn(node);
+            inO(node.right, fn);        
+        }
 
-        this.#inOrder(this.#root, fn);
+        return inO(this.#root, fn);
 
     };
-    #inOrder(node, fn){
-        if(node ===null)return;
-        this.#inOrder(node.left, fn);
-        fn(node);
-        this.#inOrder(node.right, fn);
-    }
     //<root><left><right>
     preOrderForEach(fn){
         if(typeof fn !== "function") throw new Error('a call back funciton is required');
         if(this.#root === null) return;
-        
+        const preO =(node, fn)=>{
+            if(node ===null)return;
+            fn(node);
+            preO(node.left, fn);
+            preO(node.right, fn);
+        }
 
-        this.#preOrder(this.#root, fn);
+        return preO(this.#root, fn);
 
-    };
-    #preOrder(node, fn){
-        if(node ===null)return;
-        fn(node);
-        this.#preOrder(node.left, fn);
-        this.#preOrder(node.right, fn);
-    }    
+    };  
     //<left><right><root>
     postOrderForEach(fn){
         if(typeof fn !== "function") throw new Error('a call back funciton is required');
         if(this.#root === null) return;
         
-
-        this.#postOrder(this.#root, fn);
+        const postO =(node, fn)=>{
+                if(node ===null)return;
+                postO(node.left, fn);
+                postO(node.right, fn);
+                fn(node);
+        }
+        return postO(this.#root, fn);
 
     };
-    #postOrder(node, fn){
-        if(node ===null)return;
-        this.#postOrder(node.left, fn);
-        this.#postOrder(node.right, fn);
-        fn(node);
-    }
-
     height(value){
         const currentNode = this.find(value);
         if(currentNode === null) return null;
@@ -256,7 +252,26 @@ class Tree{
         }
         return getDepth(this.#root);
     }
-    isBalanced(){}
+    isBalanced(){
+        
+        if(this.#root === null) return null;
+        
+        const balance = (node)=>{
+            if(node === null) return 0;
+            
+            const left = balance(node.left);
+            if(left === -1) return -1;
+            
+            const right = balance(node.right);
+            if(right === -1) return -1;
+
+            if(Math.abs(left - right) > 2) return -1
+            return Math.max(left, right) + 1;
+
+        }
+        return balance(this.#root) !== -1;
+        
+    }
 }
 export{
     Tree,

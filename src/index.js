@@ -193,4 +193,6 @@ test.inOrderForEach(node => console.log(node.data));
 //==========>KNIGHT TRAVAILS<===========
 import { Graph } from "./Modules/knight-travails";
 
-const grid = new Graph(8);
+const grid = new Graph();
+
+grid.getKnightMoves([0, 0], [7,7]);

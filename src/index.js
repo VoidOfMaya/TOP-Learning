@@ -115,7 +115,7 @@ test.keys().forEach(element => {
 console.log(test.length());
 */
 import { Tree } from "./Modules/BSTs";
-
+/*
 const test = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
                     // 1  2  3  4   5  6     7  8        9   10     11
 console.log(test.getRoot())
@@ -133,3 +133,64 @@ console.log(` depth: ${test.depth(4)}`);
 console.log(` balance: ${test.isBalanced()}`);
 test.reBalance()
 test.prettyPrint(test.getRoot());
+
+console.log(`===>RUNNING SCRIPT<===`);
+function generateRandomNumbers() {
+    const arr = [];
+    for (let i = 0; i < 10; i++) {
+        arr.push(Math.floor(Math.random() * 100));
+    }
+    return arr;
+}
+
+// 2. Create a BST from the random numbers
+const randomNumbers = generateRandomNumbers();
+const test = new Tree(randomNumbers);
+
+// 3. Confirm that the tree is balanced
+console.log("Is the tree balanced?", test.isBalanced());  // should return true
+
+// 4. Print all elements in level, pre, post, and in-order
+console.log("Level Order:");
+test.levelOrderForEach(node => console.log(node.data));
+
+console.log("Pre-order:");
+test.preOrderForEach(node => console.log(node.data));
+
+console.log("Post-order:");
+test.postOrderForEach(node => console.log(node.data));
+
+console.log("In-order:");
+test.inOrderForEach(node => console.log(node.data));
+
+// 5. Unbalance the tree by adding numbers > 100
+test.insert(150);
+test.insert(200);
+test.insert(250);
+
+// 6. Confirm that the tree is unbalanced
+console.log("Is the tree balanced after unbalancing?", test.isBalanced());  // should return false
+
+// 7. Balance the tree
+test.reBalance();
+
+// 8. Confirm that the tree is balanced again
+console.log("Is the tree balanced after rebalancing?", test.isBalanced());  // should return true
+
+// 9. Print all elements again after rebalancing
+console.log("Level Order after rebalancing:");
+test.levelOrderForEach(node => console.log(node.data));
+
+console.log("Pre-order after rebalancing:");
+test.preOrderForEach(node => console.log(node.data));
+
+console.log("Post-order after rebalancing:");
+test.postOrderForEach(node => console.log(node.data));
+
+console.log("In-order after rebalancing:");
+test.inOrderForEach(node => console.log(node.data));
+*/
+//==========>KNIGHT TRAVAILS<===========
+import { Graph } from "./Modules/knight-travails";
+
+const grid = new Graph(8);

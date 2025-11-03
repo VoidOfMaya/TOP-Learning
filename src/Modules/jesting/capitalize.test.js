@@ -46,3 +46,13 @@ test('lettercase preservation',()=>{
 test('non alphabetics',()=>{
     expect(cipher('Hello, World!', 3)).toBe('Khoor, Zruog!');
 });
+
+const analyze = require('./analyzeArr');
+test('array analyzer',()=>{
+    expect(analyze([1,8,3,4,2,6])).toStrictEqual({
+   average: 4,
+   min: 1,
+   max: 8,
+   length: 6
+})
+})

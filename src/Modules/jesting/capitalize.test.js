@@ -18,6 +18,8 @@ test('reverse string',()=>{
     expect(revString('this string')).toBe('gnirts siht');
 })
 
+
+
 const calculate = require('./calculator')
 
 test('add',()=>{
@@ -32,3 +34,15 @@ test('divide',()=>{
 test('multiply',()=>{
     expect(calculate.multiply(5, 4)).toBe(20);
 })
+
+const cipher = require('./ceaser');
+
+test('a-z wrapping test',()=>{
+    expect(cipher('xyz', 3)).toBe('abc');
+});
+test('lettercase preservation',()=>{
+    expect(cipher('heLLo', 3)).toBe('khOOr');
+});
+test('non alphabetics',()=>{
+    expect(cipher('Hello, World!', 3)).toBe('Khoor, Zruog!');
+});

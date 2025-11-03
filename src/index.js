@@ -193,6 +193,9 @@ test.inOrderForEach(node => console.log(node.data));
 //==========>KNIGHT TRAVAILS<===========
 import { Graph } from "./Modules/knight-travails";
 
-const grid = new Graph();
+//const grid = new Graph();
 
-grid.getKnightMoves([0, 0], [7,7]);
+//grid.getKnightMoves([0, 0], [7,7]);
+
+//====>JEST unite testing<====//
+

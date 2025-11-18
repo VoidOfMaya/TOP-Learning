@@ -1,5 +1,5 @@
-import { asyncPromis } from "./Modules/async";
-import { memeSearch, fetchMemes } from "./Modules/APis";
+//import { asyncPromis } from "./Modules/async";
+//import { memeSearch, fetchMemes } from "./Modules/APis";
 
 //const timedCallBack = function(){
 //    return "this timed function has concluded after 5 seconds";
@@ -44,9 +44,9 @@ document.body.appendChild(container);
 */
 
 //computer science study: 22.10.2025
-import { run } from "./Modules/recursion";
-import { LinkedList } from "./Modules/linkedlists";
-import { Hashmap } from "./Modules/hashmap";
+//import { run } from "./Modules/recursion";
+//import { LinkedList } from "./Modules/linkedlists";
+//import { Hashmap } from "./Modules/hashmap";
 /*
 const list = new LinkedList ();
 //1
@@ -114,7 +114,7 @@ test.keys().forEach(element => {
 });
 console.log(test.length());
 */
-import { Tree } from "./Modules/BSTs";
+//import { Tree } from "./Modules/BSTs";
 /*
 const test = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
                     // 1  2  3  4   5  6     7  8        9   10     11
@@ -191,11 +191,43 @@ console.log("In-order after rebalancing:");
 test.inOrderForEach(node => console.log(node.data));
 */
 //==========>KNIGHT TRAVAILS<===========
-import { Graph } from "./Modules/knight-travails";
+//import { Graph } from "./Modules/knight-travails";
 
 //const grid = new Graph();
 
 //grid.getKnightMoves([0, 0], [7,7]);
 
 //====>JEST unite testing<====//
+
+
+const square = document.getElementById('A');
+square.style.display ='none';
+
+const btn = document.createElement('div');
+btn.innerHTML='Click me!'
+btn.style.alignSelf= 'center';
+btn.style.backgroundColor = 'red';
+btn.style.padding= '10px';
+btn.style.marginTop ='30vh';
+
+//trigger sqaure
+let isSeen = false
+btn.addEventListener('click',()=>{
+    if(isSeen){
+        
+        square.classList.remove('fade-in');
+        square.classList.add('fade-out');
+        //square.style.display = 'none';
+        isSeen = false;       
+    }else{
+        square.style.display = 'block'; 
+        square.classList.remove('fade-out')
+        square.classList.add('fade-in');
+        
+        
+        isSeen = true;       
+    }
+
+})
+document.body.appendChild(btn);
 

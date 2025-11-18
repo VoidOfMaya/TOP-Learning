@@ -1,0 +1,52 @@
+
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+.square{
+    margin-top: 45vh;
+    background-color: red;
+    height: 90px;
+    width: 90px;
+    align-content: center;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    opacity: 0;
+    display: none;
+}
+
+#A.fade-in{
+    animation: fade-in 0.7s ease-in forwards;
+}
+
+
+#A.fade-out{
+    animation: fade-out 0.7s ease-out forwards;
+}
+
+@keyframes fade-in{
+    0%{
+        opacity: 0;
+        
+    }
+    100%{
+        opacity: 1;
+   
+    }
+}
+
+@keyframes fade-out {
+    0%{
+        opacity: 100%;
+       
+    }
+    100%{
+        opacity: 0;
+        
+    }
+}
+
